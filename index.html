@@ -92,15 +92,31 @@
         .filter-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
 
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .project-item { background: var(--card-bg); overflow: hidden; text-align: left; transition: 0.4s; }
+        .project-item { background: var(--card-bg); overflow: hidden; text-align: left; transition: 0.4s; cursor: pointer; }
+        .project-item:hover { transform: translateY(-5px); }
         .project-item.hide { display: none; }
         .project-img-wrapper { width: 100%; height: 400px; overflow: hidden; }
         .project-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transition: 0.6s; }
+        .project-item:hover .project-img { filter: brightness(1); }
         .project-info { padding: 25px; }
         .project-category { color: var(--gold); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; }
         .project-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 10px; }
 
-        /* --- Contact --- */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.98); z-index: 5000;
+            display: none; justify-content: center; overflow-y: auto;
+        }
+        .modal.active { display: flex; }
+        .modal-content { width: 100%; max-width: 1100px; padding: 60px 20px; position: relative; }
+        .close-modal { position: fixed; top: 25px; right: 25px; font-size: 2.5rem; color: white; cursor: pointer; z-index: 5001; }
+        
+        .modal-gallery { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px; }
+        .modal-gallery img { width: 100%; object-fit: cover; border: 1px solid #222; }
+        .modal-description { max-width: 800px; margin: 0 auto; }
+        .modal-description h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        .modal-description p { color: var(--text-gray); font-size: 1.1rem; line-height: 1.8; white-space: pre-line; }
+
         .contact-section { padding: 100px 8%; background: #0a0a0a; border-top: 1px solid #222; }
         .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
         .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 25px; }
@@ -132,7 +148,7 @@
             .contact-container { grid-template-columns: 1fr; gap: 40px; }
             .projects-grid { grid-template-columns: 1fr; }
             .project-img-wrapper { height: 320px; }
-            .section-title { font-size: 1.8rem; }
+            .modal-description h2 { font-size: 1.8rem; }
         }
 
         .toggle .line1 { transform: rotate(-45deg) translate(-4px, 5px); }
@@ -177,17 +193,20 @@
             <button class="filter-btn" data-filter="res" id="f-res">საცხოვრებელი</button>
             <button class="filter-btn" data-filter="com" id="f-com">კომერციული</button>
         </div>
-        <div class="projects-grid">
-            <div class="project-item" data-category="res">
-                <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800" class="project-img"></div>
-                <div class="project-info"><span class="project-category cat-res">საცხოვრებელი</span><h3 class="p-title-1">ვერეს რეზიდენცია</h3></div>
+        <div class="projects-grid" id="projects-container">
             </div>
-            <div class="project-item" data-category="com">
-                <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" class="project-img"></div>
-                <div class="project-info"><span class="project-category cat-com">კომერციული</span><h3 class="p-title-2">ტექ-ჰაბის ოფისი</h3></div>
+    </section>
+
+    <div class="modal" id="projectModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div id="modal-gallery" class="modal-gallery"></div>
+            <div class="modal-description">
+                <h2 id="modal-title"></h2>
+                <p id="modal-text"></p>
             </div>
         </div>
-    </section>
+    </div>
 
     <section id="contact" class="contact-section">
         <div class="contact-container">
@@ -219,15 +238,89 @@
     </footer>
 
     <script>
+        const projects = [
+            {
+                id: 1,
+                category: "res",
+                title: { ka: "ვერეს რეზიდენცია", en: "Vere Residence", ru: "Резиденция Вере" },
+                mainImg: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800",
+                images: [
+                    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
+                    "https://images.unsplash.com/photo-1616489953149-7597b53072a9?auto=format&fit=crop&q=80&w=1200",
+                    "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?auto=format&fit=crop&q=80&w=1200"
+                ],
+                description: {
+                    ka: "ეს არის ვერეს რეზიდენციის პროექტი. აქ გამოყენებულია ნატურალური ხის მასალები და თბილი განათება სიმყუდროვის შესაქმნელად.",
+                    en: "This is the Vere Residence project. Natural wood materials and warm lighting are used to create comfort.",
+                    ru: "Это проект Резиденция Вере. Для создания уюта использованы натуральные деревянные материалы и теплое освещение."
+                }
+            },
+            {
+                id: 2,
+                category: "com",
+                title: { ka: "ტექ-ჰაბის ოფისი", en: "Tech-Hub Office", ru: "Офис Тех-Хаб" },
+                mainImg: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
+                images: [
+                    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
+                    "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=1200"
+                ],
+                description: {
+                    ka: "თანამედროვე და მინიმალისტური ოფისი ტექნოლოგიური კომპანიისთვის.",
+                    en: "A modern and minimalist office for a tech company.",
+                    ru: "Современный и минималистичный офис для технологической компании."
+                }
+            }
+        ];
+
+        let currentLang = 'ka';
+
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            projects.forEach(p => {
+                const item = document.createElement('div');
+                item.className = 'project-item';
+                item.setAttribute('data-category', p.category);
+                item.onclick = () => openModal(p.id);
+                item.innerHTML = `
+                    <div class="project-img-wrapper"><img src="${p.mainImg}" class="project-img"></div>
+                    <div class="project-info">
+                        <span class="project-category">${p.category === 'res' ? (currentLang === 'ka' ? 'საცხოვრებელი' : 'Residential') : (currentLang === 'ka' ? 'კომერციული' : 'Commercial')}</span>
+                        <h3 class="p-title">${p.title[currentLang]}</h3>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function openModal(id) {
+            const p = projects.find(item => item.id === id);
+            const modal = document.getElementById('projectModal');
+            const gallery = document.getElementById('modal-gallery');
+            
+            gallery.innerHTML = '';
+            p.images.forEach(imgUrl => {
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                gallery.appendChild(img);
+            });
+
+            document.getElementById('modal-title').innerText = p.title[currentLang];
+            document.getElementById('modal-text').innerText = p.description[currentLang];
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         function toggleNav() {
             document.querySelector('.nav-links').classList.toggle('nav-active');
             document.querySelector('.burger').classList.toggle('toggle');
         }
-
-        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.remove('nav-active');
-            document.querySelector('.burger').classList.remove('toggle');
-        }));
 
         const translations = {
             ka: { home: "მთავარი", proj: "პროექტები", cont: "კონტაქტი", hero: "ინტერიერი, რომელიც გიამბობთ", hbtn: "პორტფოლიო", title: "პროექტები", all: "ყველა", res: "საცხოვრებელი", com: "კომერციული", ct: "კონტაქტი", cd: "დაგვიკავშირდით სასურველ პლატფორმაზე:", wa: "მოგვწერეთ სწრაფად", ml: "მოგვწერეთ მეილზე", ig: "ნახეთ სიახლეები", foot: "ყველა უფლება დაცულია" },
@@ -236,6 +329,7 @@
         };
 
         function setLanguage(lang) {
+            currentLang = lang;
             const t = translations[lang];
             document.getElementById('nav-home').innerText = t.home;
             document.getElementById('nav-projects').innerText = t.proj;
@@ -252,10 +346,12 @@
             document.getElementById('c-ml').innerText = t.ml;
             document.getElementById('c-ig').innerText = t.ig;
             document.getElementById('foot-text').innerText = t.foot;
+            
             document.querySelectorAll('.lang-btn').forEach(b => {
                 b.classList.remove('active');
                 if(b.innerText.toLowerCase() === lang) b.classList.add('active');
             });
+            renderProjects();
         }
 
         document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -268,6 +364,8 @@
                 });
             });
         });
+
+        renderProjects();
     </script>
 </body>
 </html>
