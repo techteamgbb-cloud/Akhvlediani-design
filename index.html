@@ -36,29 +36,23 @@
             position: fixed; 
             width: 100%; 
             top: 0; 
-            z-index: 3000; 
+            z-index: 4000; 
             border-bottom: 1px solid #222;
         }
 
         .logo { 
             font-family: 'Playfair Display', serif; 
-            font-size: 1rem; 
+            font-size: 0.9rem; 
             letter-spacing: 2px; 
             text-transform: uppercase; 
             color: var(--white);
-            z-index: 3001;
+            z-index: 4001;
         }
 
         .nav-right { display: flex; align-items: center; }
 
-        .nav-links { 
-            display: flex; 
-            list-style: none; 
-            align-items: center;
-        }
-
+        .nav-links { display: flex; list-style: none; align-items: center; }
         .nav-links li { margin-left: 25px; }
-
         .nav-links a { 
             text-decoration: none; 
             color: var(--white); 
@@ -67,168 +61,100 @@
             letter-spacing: 1px;
             transition: 0.3s; 
         }
+        .nav-links a:hover { color: var(--gold); }
 
-        .lang-switcher { 
-            margin-left: 25px; 
-            display: flex; 
-            gap: 4px; 
-            z-index: 3001;
-        }
-
+        .lang-switcher { margin-left: 25px; display: flex; gap: 5px; z-index: 4001; }
         .lang-btn { 
-            background: none; 
-            border: 1px solid #333; 
-            color: var(--white); 
-            width: 38px; 
-            height: 26px; 
-            cursor: pointer; 
-            font-size: 0.6rem; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
+            background: none; border: 1px solid #333; color: var(--white); 
+            width: 40px; height: 28px; cursor: pointer; font-size: 0.65rem; 
+            display: flex; align-items: center; justify-content: center; transition: 0.3s;
         }
-
         .lang-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(179, 146, 78, 0.1); }
 
-        .burger {
-            display: none;
-            cursor: pointer;
-            margin-left: 20px;
-            z-index: 3001;
-        }
-
-        .burger div {
-            width: 25px;
-            height: 2px;
-            background-color: var(--white);
-            margin: 5px;
-            transition: 0.3s;
-        }
+        .burger { display: none; cursor: pointer; margin-left: 15px; z-index: 4001; }
+        .burger div { width: 22px; height: 2px; background-color: var(--white); margin: 4px; transition: 0.3s; }
 
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1500');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5%;
-            text-align: center;
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center;
         }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 8vw, 3rem);
-            margin-bottom: 25px;
-            font-weight: 400;
-        }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 8vw, 3.2rem); margin-bottom: 25px; font-weight: 400; }
+        .btn-gold { padding: 15px 35px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; transition: 0.4s; }
+        .btn-gold:hover { background: var(--gold); color: #000; }
 
         .projects-section { padding: 120px 8% 60px; text-align: center; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 30px; }
-
-        .filter-container { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 10px; 
-            margin-bottom: 40px; 
-        }
-
-        .filter-btn { 
-            background: none; border: 1px solid #333; color: var(--text-gray); 
-            padding: 8px 18px; cursor: pointer; text-transform: uppercase; 
-            font-size: 0.65rem; transition: 0.4s; 
-        }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 40px; }
+        .filter-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px; }
+        .filter-btn { background: none; border: 1px solid #333; color: var(--text-gray); padding: 10px 20px; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; transition: 0.4s; }
         .filter-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
 
-        .projects-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 25px; 
-        }
-
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
         .project-item { background: var(--card-bg); overflow: hidden; text-align: left; transition: 0.4s; }
         .project-item.hide { display: none; }
-        .project-img-wrapper { width: 100%; height: 350px; overflow: hidden; }
-        .project-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: 0.6s; }
-        .project-info { padding: 20px; }
-        .project-category { color: var(--gold); font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; }
-        .project-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-top: 5px; }
+        .project-img-wrapper { width: 100%; height: 400px; overflow: hidden; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transition: 0.6s; }
+        .project-info { padding: 25px; }
+        .project-category { color: var(--gold); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; }
+        .project-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 10px; }
 
-        .contact-section { padding: 80px 8%; background: #0a0a0a; border-top: 1px solid #222; }
-        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px; }
-        .contact-actions { display: flex; flex-direction: column; gap: 10px; }
+        /* --- Contact --- */
+        .contact-section { padding: 100px 8%; background: #0a0a0a; border-top: 1px solid #222; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 25px; }
+        .contact-actions { display: flex; flex-direction: column; gap: 15px; }
         
         .action-card {
-            display: flex; align-items: center; background: #151515; padding: 15px;
+            display: flex; align-items: center; background: #151515; padding: 20px;
             border: 1px solid #333; text-decoration: none; color: white; transition: 0.3s;
         }
-        .action-card:hover { border-color: var(--gold); }
-        .action-icon { width: 40px; color: var(--gold); font-weight: bold; }
-        .action-text span { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
-        .action-text small { color: var(--text-gray); font-size: 0.65rem; }
+        .action-card:hover { border-color: var(--gold); transform: translateX(10px); }
+        .action-icon { width: 45px; color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+        .action-text span { display: block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
+        .action-text small { color: var(--text-gray); font-size: 0.7rem; }
 
-        footer { text-align: center; padding: 40px; border-top: 1px solid #222; font-size: 0.6rem; color: #444; letter-spacing: 1px; }
+        footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-size: 0.7rem; color: #444; letter-spacing: 1px; }
 
         @media (max-width: 768px) {
             nav { padding: 0 5%; height: 70px; }
-            
             .burger { display: block; }
-
             .nav-links {
-                position: fixed;
-                right: -100%;
-                top: 70px;
-                height: calc(100vh - 70px);
-                background: #0f0f0f;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                transition: 0.5s;
-                padding-top: 50px;
-                border-top: 1px solid #222;
-                z-index: 2999;
+                position: fixed; right: -100%; top: 70px; height: calc(100vh - 70px);
+                background: #0f0f0f; flex-direction: column; width: 100%;
+                text-align: center; transition: 0.5s; padding-top: 40px; z-index: 3999;
             }
-
             .nav-links.nav-active { right: 0; }
-            .nav-links li { margin: 20px 0; }
-            .nav-links a { font-size: 1.2rem; }
+            .nav-links li { margin: 25px 0; }
+            .nav-links a { font-size: 1.3rem; }
 
-            .contact-container { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; gap: 40px; }
             .projects-grid { grid-template-columns: 1fr; }
-            .project-img-wrapper { height: 300px; }
-
-            .lang-switcher { margin-left: 10px; }
+            .project-img-wrapper { height: 320px; }
+            .section-title { font-size: 1.8rem; }
         }
 
-        .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        .toggle .line1 { transform: rotate(-45deg) translate(-4px, 5px); }
         .toggle .line2 { opacity: 0; }
-        .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
-
+        .toggle .line3 { transform: rotate(45deg) translate(-4px, -5px); }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">Akhvlediani Designs</div>
-        
         <div class="nav-right">
             <ul class="nav-links">
                 <li><a href="#home" id="nav-home">მთავარი</a></li>
                 <li><a href="#projects" id="nav-projects">პროექტები</a></li>
                 <li><a href="#contact" id="nav-contact">კონტაქტი</a></li>
             </ul>
-
             <div class="lang-switcher">
                 <button onclick="setLanguage('ka')" class="lang-btn active">KA</button>
                 <button onclick="setLanguage('en')" class="lang-btn">EN</button>
                 <button onclick="setLanguage('ru')" class="lang-btn">RU</button>
             </div>
-
             <div class="burger" onclick="toggleNav()">
                 <div class="line1"></div>
                 <div class="line2"></div>
@@ -239,7 +165,7 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 id="hero-title">ინტერიერი, რომელიც გიამბობთ ისტორიას</h1>
+            <h1 id="hero-title">ინტერიერი, რომელიც გიამბობთ ამბავს</h1>
             <a href="#projects" class="btn-gold" id="hero-btn">პორტფოლიო</a>
         </div>
     </section>
@@ -251,7 +177,6 @@
             <button class="filter-btn" data-filter="res" id="f-res">საცხოვრებელი</button>
             <button class="filter-btn" data-filter="com" id="f-com">კომერციული</button>
         </div>
-
         <div class="projects-grid">
             <div class="project-item" data-category="res">
                 <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800" class="project-img"></div>
@@ -281,6 +206,10 @@
                     <div class="action-icon">@</div>
                     <div class="action-text"><span>Email</span><small id="c-ml">მოგვწერეთ მეილზე</small></div>
                 </a>
+                <a href="https://instagram.com" target="_blank" class="action-card">
+                    <div class="action-icon">IG</div>
+                    <div class="action-text"><span>Instagram</span><small id="c-ig">ნახეთ სიახლეები</small></div>
+                </a>
             </div>
         </div>
     </section>
@@ -291,38 +220,19 @@
 
     <script>
         function toggleNav() {
-            const nav = document.querySelector('.nav-links');
-            const burger = document.querySelector('.burger');
-            nav.classList.toggle('nav-active');
-            burger.classList.toggle('toggle');
+            document.querySelector('.nav-links').classList.toggle('nav-active');
+            document.querySelector('.burger').classList.toggle('toggle');
         }
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('nav-active');
-                document.querySelector('.burger').classList.remove('toggle');
-            });
-        });
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.remove('nav-active');
+            document.querySelector('.burger').classList.remove('toggle');
+        }));
 
         const translations = {
-            ka: {
-                home: "მთავარი", proj: "პროექტები", cont: "კონტაქტი", hero: "ინტერიერი, რომელიც გიამბობთ ისტორიას", hbtn: "პორტფოლიო",
-                title: "პროექტები", all: "ყველა", res: "საცხოვრებელი", com: "კომერციული",
-                ct: "კონტაქტი", cd: "დაგვიკავშირდით სასურველ პლატფორმაზე:", 
-                wa: "მოგვწერეთ სწრაფად", ml: "მოგვწერეთ მეილზე", foot: "ყველა უფლება დაცულია"
-            },
-            en: {
-                home: "Home", proj: "Projects", cont: "Contact", hero: "Interiors That Tell Your History", hbtn: "Portfolio",
-                title: "Our Projects", all: "All", res: "Residential", com: "Commercial",
-                ct: "Contact", cd: "Contact us via preferred platform:", 
-                wa: "Message us quickly", ml: "Send us an email", foot: "All rights reserved"
-            },
-            ru: {
-                home: "Главная", proj: "Проекты", cont: "Контакт", hero: "Интерьеры с историей", hbtn: "Портфолио",
-                title: "Проекты", all: "Все", res: "Жилые", com: "Коммерческие",
-                ct: "Контакт", cd: "Свяжитесь с нами:", 
-                wa: "Напишите нам быстро", ml: "Напишите нам на почту", foot: "Все права защищены"
-            }
+            ka: { home: "მთავარი", proj: "პროექტები", cont: "კონტაქტი", hero: "ინტერიერი, რომელიც გიამბობთ", hbtn: "პორტფოლიო", title: "პროექტები", all: "ყველა", res: "საცხოვრებელი", com: "კომერციული", ct: "კონტაქტი", cd: "დაგვიკავშირდით სასურველ პლატფორმაზე:", wa: "მოგვწერეთ სწრაფად", ml: "მოგვწერეთ მეილზე", ig: "ნახეთ სიახლეები", foot: "ყველა უფლება დაცულია" },
+            en: { home: "Home", proj: "Projects", cont: "Contact", hero: "Interiors That Tell Your Story", hbtn: "Portfolio", title: "Projects", all: "All", res: "Residential", com: "Commercial", ct: "Contact", cd: "Get in touch via:", wa: "Message quickly", ml: "Send an email", ig: "Check updates", foot: "All rights reserved" },
+            ru: { home: "Главная", proj: "Проекты", cont: "Контакт", hero: "Интерьеры с историей", hbtn: "Портфолио", title: "Проекты", all: "Все", res: "Жилые", com: "Коммерческие", ct: "Контакт", cd: "Свяжитесь с нами:", wa: "Написать быстро", ml: "Написать на почту", ig: "Наши новости", foot: "Все права защищены" }
         };
 
         function setLanguage(lang) {
@@ -340,11 +250,11 @@
             document.getElementById('cont-desc').innerText = t.cd;
             document.getElementById('c-wa').innerText = t.wa;
             document.getElementById('c-ml').innerText = t.ml;
+            document.getElementById('c-ig').innerText = t.ig;
             document.getElementById('foot-text').innerText = t.foot;
-
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(b => {
+                b.classList.remove('active');
+                if(b.innerText.toLowerCase() === lang) b.classList.add('active');
             });
         }
 
@@ -354,11 +264,7 @@
                 btn.classList.add('active');
                 const val = btn.getAttribute('data-filter');
                 document.querySelectorAll('.project-item').forEach(item => {
-                    if (val === 'all' || item.getAttribute('data-category') === val) {
-                        item.classList.remove('hide');
-                    } else {
-                        item.classList.add('hide');
-                    }
+                    item.classList.toggle('hide', val !== 'all' && item.getAttribute('data-category') !== val);
                 });
             });
         });
