@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhvlediani Designs | Full Premium Site</title>
+    <title>Akhvlediani Designs</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
 
     <style>
@@ -13,7 +13,7 @@
             --card-bg: #151515;
             --text-gray: #a0a0a0;
             --white: #ffffff;
-            --nav-height: 85px;
+            --nav-height: 80px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* --- ნავიგაცია (გასწორებული) --- */
         nav {
             display: flex; 
             justify-content: space-between; 
@@ -37,186 +36,210 @@
             position: fixed; 
             width: 100%; 
             top: 0; 
-            z-index: 2000; 
+            z-index: 3000; 
             border-bottom: 1px solid #222;
         }
 
         .logo { 
             font-family: 'Playfair Display', serif; 
-            font-size: 1.1rem; 
-            letter-spacing: 3px; 
+            font-size: 1rem; 
+            letter-spacing: 2px; 
             text-transform: uppercase; 
             color: var(--white);
-            white-space: nowrap;
+            z-index: 3001;
         }
 
         .nav-right { display: flex; align-items: center; }
 
-        .nav-links { display: flex; list-style: none; align-items: center; }
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            align-items: center;
+        }
+
         .nav-links li { margin-left: 25px; }
+
         .nav-links a { 
             text-decoration: none; 
             color: var(--white); 
             font-size: 0.75rem; 
             text-transform: uppercase; 
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             transition: 0.3s; 
         }
-        .nav-links a:hover { color: var(--gold); }
 
-        /* ენების გადამრთველი (გასწორებული სიმეტრია) */
         .lang-switcher { 
-            margin-left: 30px; 
+            margin-left: 25px; 
             display: flex; 
-            gap: 5px; 
+            gap: 4px; 
+            z-index: 3001;
         }
 
         .lang-btn { 
             background: none; 
             border: 1px solid #333; 
             color: var(--white); 
-            width: 42px; /* ფიქსირებული სიგანე */
-            height: 28px; /* ფიქსირებული სიმაღლე */
+            width: 38px; 
+            height: 26px; 
             cursor: pointer; 
-            font-size: 0.65rem; 
-            font-weight: 600;
-            transition: all 0.3s ease; 
+            font-size: 0.6rem; 
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: 0.3s;
         }
 
-        .lang-btn.active { 
-            border-color: var(--gold); 
-            color: var(--gold); 
-            background: rgba(179, 146, 78, 0.1);
+        .lang-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(179, 146, 78, 0.1); }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+            margin-left: 20px;
+            z-index: 3001;
         }
 
-        .lang-btn:hover:not(.active) {
-            border-color: #555;
-            color: var(--gold);
+        .burger div {
+            width: 25px;
+            height: 2px;
+            background-color: var(--white);
+            margin: 5px;
+            transition: 0.3s;
         }
 
-        /* --- Hero Section --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1500');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 5%;
             text-align: center;
         }
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 5vw, 3.2rem);
-            margin-bottom: 30px;
+            font-size: clamp(1.5rem, 8vw, 3rem);
+            margin-bottom: 25px;
             font-weight: 400;
         }
 
-        .btn-gold {
-            padding: 15px 40px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            transition: 0.4s;
-        }
-        .btn-gold:hover { background: var(--gold); color: var(--dark-bg); }
+        .projects-section { padding: 120px 8% 60px; text-align: center; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 30px; }
 
-        /* --- Projects Section --- */
-        .projects-section { 
-            padding: calc(var(--nav-height) + 60px) 8% 80px; 
-            text-align: center; 
-        }
-
-        .section-title { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 2.2rem; 
+        .filter-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 10px; 
             margin-bottom: 40px; 
-            letter-spacing: 1px;
         }
 
-        .filter-container { margin-bottom: 50px; }
         .filter-btn { 
             background: none; border: 1px solid #333; color: var(--text-gray); 
-            padding: 10px 25px; margin: 5px; cursor: pointer; text-transform: uppercase; 
-            font-size: 0.7rem; letter-spacing: 1px; transition: 0.4s; 
+            padding: 8px 18px; cursor: pointer; text-transform: uppercase; 
+            font-size: 0.65rem; transition: 0.4s; 
         }
-        .filter-btn.active { background: var(--gold); color: var(--dark-bg); border-color: var(--gold); }
+        .filter-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
 
         .projects-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-            gap: 30px; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 25px; 
         }
 
-        .project-item { background: var(--card-bg); overflow: hidden; transition: 0.4s; text-align: left; }
+        .project-item { background: var(--card-bg); overflow: hidden; text-align: left; transition: 0.4s; }
         .project-item.hide { display: none; }
+        .project-img-wrapper { width: 100%; height: 350px; overflow: hidden; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: 0.6s; }
+        .project-info { padding: 20px; }
+        .project-category { color: var(--gold); font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; }
+        .project-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-top: 5px; }
 
-        .project-img-wrapper { width: 100%; height: 420px; overflow: hidden; }
-        .project-img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            filter: brightness(0.6); transition: 0.6s; 
-        }
-        .project-item:hover .project-img { filter: brightness(1); transform: scale(1.05); }
+        .contact-section { padding: 80px 8%; background: #0a0a0a; border-top: 1px solid #222; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px; }
+        .contact-actions { display: flex; flex-direction: column; gap: 10px; }
         
-        .project-info { padding: 25px; }
-        .project-category { color: var(--gold); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; }
-        .project-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 10px; font-weight: 400; }
-
-        /* --- Contact Section --- */
-        .contact-section { padding: 100px 8%; background: #0a0a0a; border-top: 1px solid #222; }
-        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        
-        .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 25px; font-weight: 400; }
-        .contact-info p { color: var(--text-gray); margin-bottom: 15px; font-weight: 300; }
-
-        .contact-actions { display: flex; flex-direction: column; gap: 12px; }
         .action-card {
-            display: flex; align-items: center; background: #151515; padding: 20px;
+            display: flex; align-items: center; background: #151515; padding: 15px;
             border: 1px solid #333; text-decoration: none; color: white; transition: 0.3s;
         }
-        .action-card:hover { border-color: var(--gold); transform: translateX(8px); }
-        .action-icon { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); margin-right: 20px; width: 35px; text-align: center; }
-        .action-text span { display: block; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-        .action-text small { color: var(--text-gray); font-size: 0.7rem; }
+        .action-card:hover { border-color: var(--gold); }
+        .action-icon { width: 40px; color: var(--gold); font-weight: bold; }
+        .action-text span { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+        .action-text small { color: var(--text-gray); font-size: 0.65rem; }
 
-        footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-size: 0.7rem; color: #444; text-transform: uppercase; letter-spacing: 1px; }
+        footer { text-align: center; padding: 40px; border-top: 1px solid #222; font-size: 0.6rem; color: #444; letter-spacing: 1px; }
 
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
+            nav { padding: 0 5%; height: 70px; }
+            
+            .burger { display: block; }
+
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                height: calc(100vh - 70px);
+                background: #0f0f0f;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                transition: 0.5s;
+                padding-top: 50px;
+                border-top: 1px solid #222;
+                z-index: 2999;
+            }
+
+            .nav-links.nav-active { right: 0; }
+            .nav-links li { margin: 20px 0; }
+            .nav-links a { font-size: 1.2rem; }
+
             .contact-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            nav { padding: 0 5%; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-img-wrapper { height: 300px; }
+
+            .lang-switcher { margin-left: 10px; }
         }
+
+        .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        .toggle .line2 { opacity: 0; }
+        .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">Akhvlediani Designs</div>
+        
         <div class="nav-right">
             <ul class="nav-links">
                 <li><a href="#home" id="nav-home">მთავარი</a></li>
                 <li><a href="#projects" id="nav-projects">პროექტები</a></li>
                 <li><a href="#contact" id="nav-contact">კონტაქტი</a></li>
             </ul>
+
             <div class="lang-switcher">
                 <button onclick="setLanguage('ka')" class="lang-btn active">KA</button>
                 <button onclick="setLanguage('en')" class="lang-btn">EN</button>
                 <button onclick="setLanguage('ru')" class="lang-btn">RU</button>
+            </div>
+
+            <div class="burger" onclick="toggleNav()">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
             </div>
         </div>
     </nav>
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 id="hero-title">ინტერიერი, რომელიც გიამბობთ</h1>
+            <h1 id="hero-title">ინტერიერი, რომელიც გიამბობთ ისტორიას</h1>
             <a href="#projects" class="btn-gold" id="hero-btn">პორტფოლიო</a>
         </div>
     </section>
@@ -238,20 +261,16 @@
                 <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" class="project-img"></div>
                 <div class="project-info"><span class="project-category cat-com">კომერციული</span><h3 class="p-title-2">ტექ-ჰაბის ოფისი</h3></div>
             </div>
-            <div class="project-item" data-category="res">
-                <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1616489953149-7597b53072a9?auto=format&fit=crop&q=80&w=800" class="project-img"></div>
-                <div class="project-info"><span class="project-category cat-res">საცხოვრებელი</span><h3 class="p-title-3">მინიმალისტური ვილა</h3></div>
-            </div>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
         <div class="contact-container">
             <div class="contact-info">
-                <h2 id="cont-title">დაგვიკავშირდით</h2>
-                <p id="cont-desc">აირჩიეთ სასურველი პლატფორმა კავშირისთვის:</p>
-                <p><strong>T:</strong> +995 599 00 00 00</p>
-                <p><strong>A:</strong> თბილისი, საქართველო</p>
+                <h2 id="cont-title">კონტაქტი</h2>
+                <p id="cont-desc">დაგვიკავშირდით სასურველ პლატფორმაზე:</p>
+                <p>+995 599 00 00 00</p>
+                <p>თბილისი, საქართველო</p>
             </div>
             <div class="contact-actions">
                 <a href="https://wa.me/995599000000" target="_blank" class="action-card">
@@ -260,42 +279,49 @@
                 </a>
                 <a href="mailto:info@akhvlediani.ge" class="action-card">
                     <div class="action-icon">@</div>
-                    <div class="action-text"><span>Email</span><small id="c-ml">გამოგვიგზავნეთ პროექტი</small></div>
-                </a>
-                <a href="https://instagram.com" target="_blank" class="action-card">
-                    <div class="action-icon">IG</div>
-                    <div class="action-text"><span>Instagram</span><small id="c-ig">ნახეთ სიახლეები</small></div>
+                    <div class="action-text"><span>Email</span><small id="c-ml">მოგვწერეთ მეილზე</small></div>
                 </a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>AKHVLEDIANI DESIGNS &copy; 2026 | <span id="foot-text">ყველა უფლება დაცულია</span></p>
+        AKHVLEDIANI DESIGNS &copy; 2026 | <span id="foot-text">ყველა უფლება დაცულია</span>
     </footer>
 
     <script>
+        function toggleNav() {
+            const nav = document.querySelector('.nav-links');
+            const burger = document.querySelector('.burger');
+            nav.classList.toggle('nav-active');
+            burger.classList.toggle('toggle');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('nav-active');
+                document.querySelector('.burger').classList.remove('toggle');
+            });
+        });
+
         const translations = {
             ka: {
-                home: "მთავარი", proj: "პროექტები", cont: "კონტაქტი", hero: "ინტერიერი, რომელიც გიამბობთ", hbtn: "პორტფოლიო",
+                home: "მთავარი", proj: "პროექტები", cont: "კონტაქტი", hero: "ინტერიერი, რომელიც გიამბობთ ისტორიას", hbtn: "პორტფოლიო",
                 title: "პროექტები", all: "ყველა", res: "საცხოვრებელი", com: "კომერციული",
-                ct: "დაგვიკავშირდით", cd: "აირჩიეთ სასურველი პლატფორმა კავშირისთვის:", 
-                wa: "მოგვწერეთ სწრაფად", ml: "გამოგვიგზავნეთ პროექტი", ig: "ნახეთ სიახლეები",
-                p1: "ვერეს რეზიდენცია", p2: "ტექ-ჰაბის ოფისი", p3: "მინიმალისტური ვილა", foot: "ყველა უფლება დაცულია"
+                ct: "კონტაქტი", cd: "დაგვიკავშირდით სასურველ პლატფორმაზე:", 
+                wa: "მოგვწერეთ სწრაფად", ml: "მოგვწერეთ მეილზე", foot: "ყველა უფლება დაცულია"
             },
             en: {
-                home: "Home", proj: "Projects", cont: "Contact", hero: "Interiors That Tell Your Story", hbtn: "Portfolio",
+                home: "Home", proj: "Projects", cont: "Contact", hero: "Interiors That Tell Your History", hbtn: "Portfolio",
                 title: "Our Projects", all: "All", res: "Residential", com: "Commercial",
-                ct: "Contact Us", cd: "Choose your preferred platform:", 
-                wa: "Message us quickly", ml: "Send us a project", ig: "Check our updates",
-                p1: "Vere Residence", p2: "Tech-Hub Office", p3: "Minimalist Villa", foot: "All rights reserved"
+                ct: "Contact", cd: "Contact us via preferred platform:", 
+                wa: "Message us quickly", ml: "Send us an email", foot: "All rights reserved"
             },
             ru: {
                 home: "Главная", proj: "Проекты", cont: "Контакт", hero: "Интерьеры с историей", hbtn: "Портфолио",
                 title: "Проекты", all: "Все", res: "Жилые", com: "Коммерческие",
-                ct: "Напишите нам", cd: "Выберите удобную платформу:", 
-                wa: "Напишите нам быстро", ml: "Прислать проект", ig: "Наши новости",
-                p1: "Резиденция Вере", p2: "Офис Тех-Хаб", p3: "Минималистская вилла", foot: "Все права защищены"
+                ct: "Контакт", cd: "Свяжитесь с нами:", 
+                wa: "Напишите нам быстро", ml: "Напишите нам на почту", foot: "Все права защищены"
             }
         };
 
@@ -314,30 +340,20 @@
             document.getElementById('cont-desc').innerText = t.cd;
             document.getElementById('c-wa').innerText = t.wa;
             document.getElementById('c-ml').innerText = t.ml;
-            document.getElementById('c-ig').innerText = t.ig;
             document.getElementById('foot-text').innerText = t.foot;
-
-            document.querySelectorAll('.cat-res').forEach(el => el.innerText = t.res);
-            document.querySelectorAll('.cat-com').forEach(el => el.innerText = t.com);
-            document.querySelector('.p-title-1').innerText = t.p1;
-            document.querySelector('.p-title-2').innerText = t.p2;
-            document.querySelector('.p-title-3').innerText = t.p3;
 
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === lang.toLowerCase()) btn.classList.add('active');
+                if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');
             });
         }
 
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectItems = document.querySelectorAll('.project-item');
-
-        filterBtns.forEach(btn => {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const val = btn.getAttribute('data-filter');
-                projectItems.forEach(item => {
+                document.querySelectorAll('.project-item').forEach(item => {
                     if (val === 'all' || item.getAttribute('data-category') === val) {
                         item.classList.remove('hide');
                     } else {
